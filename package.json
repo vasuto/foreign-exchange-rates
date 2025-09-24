@@ -4,12 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev:client": "vite",
-    "dev:server": "node server.js",
+    "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "npm run build && node server.js",
     "test": "jest"
   },
   "dependencies": {
