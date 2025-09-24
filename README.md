@@ -1,6 +1,6 @@
 # Foreign Exchange Rates App
 
-This simple application reads the daily foreign exchange list provided daily by ČNB and list it in the table. It contains form for amount conversion from CZK to amount in selected currency.
+This simple application reads the daily foreign exchange rates provided daily by ČNB and lists them in the table. It contains conversion form for amount from CZK to amount in selected currency.
 
 Demo available on https://frolicking-manatee-4ff467.netlify.app/
 
