@@ -1,5 +1,5 @@
 import { Box, FormControl, InputLabel, MenuItem, Paper, Select, TextField, Typography } from "@mui/material";
-import { useState, type ChangeEvent, type ReactNode } from "react";
+import { useState, type ChangeEvent } from "react";
 import { useExchangeRates } from "../hooks/useExchangeRates";
 import type { ExchangeRate } from "../types/ExchangeRate";
 import styled from "@emotion/styled";
@@ -36,7 +36,7 @@ const ExchangeRateConverter = () => {
   const [selectedRate, setSelectedRate] = useState<number>();
   const { data, isLoading, error } = useExchangeRates();
 
-  const handleRateSelectChange = (event: ChangeEvent<Omit<HTMLInputElement, "value"> & { value: number; }> | (Event & { target: { value: number; name: string; }; }), child: ReactNode): void => {
+  const handleRateSelectChange = (event: ChangeEvent<Omit<HTMLInputElement, "value"> & { value: number; }> | (Event & { target: { value: number; name: string; }; })): void => {
     setSelectedRate(event.target.value);
   }
 

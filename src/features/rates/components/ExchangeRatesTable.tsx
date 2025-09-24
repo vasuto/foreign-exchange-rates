@@ -1,4 +1,3 @@
-import React from 'react';
 import { useExchangeRates } from '../hooks/useExchangeRates';
 import type { ExchangeRate } from '../types/ExchangeRate';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
