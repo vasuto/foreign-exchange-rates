@@ -4,7 +4,7 @@ import { parseExchangeRates } from '../utils/parseExchangeRates';
 const baseUrl =
   typeof process !== 'undefined' && process.env.VITE_API_BASE_URL
     ? process.env.VITE_API_BASE_URL
-    : 'http://localhost:3000';
+    : window.location.origin;
 
 
 export const fetchExchangeRates = async (): Promise<ExchangeRate[]> => {
