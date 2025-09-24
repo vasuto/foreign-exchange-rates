@@ -70,8 +70,8 @@ const ExchangeRateConverter = () => {
                 ))}
               </Select>
           </StyledFormControl>
-          <StyledTypography>
-            =&nbsp;{getConvertedAmount(amount, selectedRate)}
+          <StyledTypography data-testid="converted-result">
+            {getConvertedAmount(amount, selectedRate)}
           </StyledTypography>
       </StyledFlexBox>
     </StyledPaper>
