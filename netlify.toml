@@ -2,3 +2,7 @@
   command = "npm run build"
   publish = "dist"
   functions = "netlify/functions"
+[[redirects]]
+  from = "/api/rates/daily"
+  to = "/.netlify/functions/api-rates-daily"
+  status = 200
