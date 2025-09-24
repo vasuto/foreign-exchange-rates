@@ -1,6 +1,24 @@
+import styled from '@emotion/styled';
 import { useExchangeRates } from '../hooks/useExchangeRates';
 import type { ExchangeRate } from '../types/ExchangeRate';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+
+const StyledBox = styled(Box)`
+  width: 100%;
+  text-align: right;
+`;
+
+const StyledTableRow = styled(TableRow)(() => ({
+  '&:nth-of-type(even)': {
+    backgroundColor: 'rgba(1, 72, 71, 0.03)',
+  },
+  '&:last-child td, &:last-child th': { border: 0 }
+}));
+
+
+const StyledTableCell = styled(TableCell)`
+  font-weight: bold;
+`;
 
 const ExchangeRatesTable = () => {
   const { data, isLoading, error } = useExchangeRates();
@@ -9,35 +27,37 @@ const ExchangeRatesTable = () => {
   if (error) return <p>Error loading exchange rates.</p>;
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Country</TableCell>
-            <TableCell align="right">Currency</TableCell>
-            <TableCell align="right">Amount</TableCell>
-            <TableCell align="right">Code</TableCell>
-            <TableCell align="right">Rate</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data?.map((rate: ExchangeRate, index: number) => (
-            <TableRow
-              key={index}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {rate.country}
-              </TableCell>
-              <TableCell align="right">{rate.currency}</TableCell>
-              <TableCell align="right">{rate.amount}</TableCell>
-              <TableCell align="right">{rate.code}</TableCell>
-              <TableCell align="right">{rate.rate}</TableCell>
+    <StyledBox>
+      <p><strong>Date:</strong> {data?.date.toLocaleDateString()}</p>
+      <TableContainer component={Paper}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>Country</StyledTableCell>
+              <StyledTableCell align="right">Currency</StyledTableCell>
+              <StyledTableCell align="right">Amount</StyledTableCell>
+              <StyledTableCell align="right">Code</StyledTableCell>
+              <StyledTableCell align="right">Rate</StyledTableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {data?.rates.map((rate: ExchangeRate, index: number) => (
+              <StyledTableRow
+                key={index}
+              >
+                <TableCell component="th" scope="row">
+                  {rate.country}
+                </TableCell>
+                <TableCell align="right">{rate.currency}</TableCell>
+                <TableCell align="right">{rate.amount}</TableCell>
+                <TableCell align="right">{rate.code}</TableCell>
+                <TableCell align="right">{rate.rate}</TableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </StyledBox>
   );
 };
 

@@ -1,4 +1,4 @@
-import type { ExchangeRate } from '../types/ExchangeRate';
+import type { ExchangeRates } from '../types/ExchangeRates';
 import { parseExchangeRates } from '../utils/parseExchangeRates';
 
 const baseUrl =
@@ -7,7 +7,7 @@ const baseUrl =
     : window.location.origin;
 
 
-export const fetchExchangeRates = async (): Promise<ExchangeRate[]> => {
+export const fetchExchangeRates = async (): Promise<ExchangeRates> => {
   const response = await fetch(`${baseUrl}/api/rates/daily`);
   const text = await response.text();
 

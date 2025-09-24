@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import type { ExchangeRate } from '../types/ExchangeRate';
 import { fetchExchangeRates } from '../api/fetchExchangeRates';
+import type { ExchangeRates } from '../types/ExchangeRates';
 
 export const useExchangeRates = () => {
-  return useQuery<ExchangeRate[]>({
+  return useQuery<ExchangeRates>({
     queryKey: ['exchangeRates'],
     queryFn: fetchExchangeRates,
   });

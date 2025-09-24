@@ -3,6 +3,7 @@ import { useState, type ChangeEvent } from "react";
 import { useExchangeRates } from "../hooks/useExchangeRates";
 import type { ExchangeRate } from "../types/ExchangeRate";
 import styled from "@emotion/styled";
+import { getConvertedAmount } from "../utils/getConvertedAmount";
 
 const StyledPaper = styled(Paper)`
   width: 100%;
@@ -44,18 +45,11 @@ const ExchangeRateConverter = () => {
     setAmount(Number(event.target.value))
   }
 
-  const getConvertedAmount = () => {
-    if(amount === undefined || selectedRate === undefined) {
-      return 0;
-    }
-    return parseFloat((amount * selectedRate).toFixed(4));
-  }
-
   return (
     <StyledPaper>
       <StyledFlexBox>
           <StyledTextField
-            label="Amount"
+            label="Amount in CZK"
             type="number"
             variant="outlined"
             value={amount}
@@ -71,13 +65,13 @@ const ExchangeRateConverter = () => {
                   label="Currency"
                   onChange={handleRateSelectChange}
               >
-                {data?.map((rate: ExchangeRate) => (
+                {data?.rates.map((rate: ExchangeRate) => (
                   <MenuItem value={rate.rate}>{rate.code}</MenuItem>
                 ))}
               </Select>
           </StyledFormControl>
           <StyledTypography>
-            {getConvertedAmount()}&nbsp;CZK
+            =&nbsp;{getConvertedAmount(amount, selectedRate)}
           </StyledTypography>
       </StyledFlexBox>
     </StyledPaper>

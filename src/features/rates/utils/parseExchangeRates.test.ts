@@ -10,13 +10,17 @@ Canada|dollar|1|CAD|14.904`;
 
 describe('parseExchangeRates', () => {
   it('parses CNB exchange rates text correctly', () => {
-    const expected: ExchangeRate[] = [
+    const expectedRates: ExchangeRate[] = [
       { country: 'Australia', currency: 'dollar', amount: 1, code: 'AUD', rate: 13.574 },
       { country: 'Brazil', currency: 'real', amount: 1, code: 'BRL', rate: 3.855 },
       { country: 'Bulgaria', currency: 'lev', amount: 1, code: 'BGN', rate: 12.377 },
       { country: 'Canada', currency: 'dollar', amount: 1, code: 'CAD', rate: 14.904 },
     ];
 
-    expect(parseExchangeRates(sampleText)).toEqual(expected);
+    const result = parseExchangeRates(sampleText);
+
+    const expectedDate = new Date(Date.UTC(2025, 8, 22));
+    expect(result.date.toISOString()).toBe(expectedDate.toISOString());
+    expect(result.rates).toEqual(expectedRates);
   });
 });
